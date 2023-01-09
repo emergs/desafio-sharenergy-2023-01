@@ -12,20 +12,21 @@ const Login = () => {
 
 
   return (
-    <Container maxWidth="sm" sx={{
-      flex: 'center',
-    }}>
+    <Container maxWidth="sm">
       <Box sx={{
         height: 400,
-        border: 0.2,
-        borderColor: 'firebrick',
-        marginTop: 10,
+        marginTop: '20%',
+        boxShadow: '0 0px 10px 10px #EEEEEE'
       }}>
-        <FormGroup>
+        <FormGroup sx={{
+          display:'flex',
+          alignContent: 'center',
+          gap:2
+        }}>
           <TextField
             sx={{
-              marginTop: 5,
-              width: 400
+              width: 400,
+              marginTop:'20%'
             }}
             id="outlined-basic"
             label="Username"
@@ -34,7 +35,6 @@ const Login = () => {
           />
           <TextField
             sx={{
-              marginTop: 5,
               width: 400,
             }}
             id="outlined-basic"
@@ -56,6 +56,7 @@ const Login = () => {
           /> */}
           <Button
             variant="contained"
+            size='large'
             onClick={() => login({ username, password })
             }
           >Login</Button>
