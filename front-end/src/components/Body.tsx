@@ -6,7 +6,7 @@ const Body = ({ children }: IChildren) => {
   return (
     <Container maxWidth="md"  >
       <Menu />
-      <Box sx={{ bgcolor: '#cfe8fc', height: '100vh', width: '100%' }}>
+      <Box sx={{ height: '100vh', width: '100%' }}>
         {children}
       </Box>
     </Container>
