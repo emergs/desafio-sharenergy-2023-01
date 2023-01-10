@@ -2,17 +2,8 @@ import { Button, Modal, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useContext, useState } from "react";
 import { CrudContext } from "../contexts/providers/CrudProvider";
+import { styleBoxModal, styleModal } from "./EditCustomerModal";
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'white',
-  boxShadow: 24,
-  p: 4,
-};
 
 const RegisterCustomerModal = () => {
 
@@ -35,9 +26,9 @@ const RegisterCustomerModal = () => {
 
   return (
     <>
-      <Box sx={{display:'flex', justifyContent:'flex-end'}}>
-        <Button 
-          sx={{marginTop:'5%', marginBottom:'5%'}} 
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          sx={{ marginTop: '5%', marginBottom: '5%' }}
           variant='contained'
           onClick={handleOpen}>
           Novo Cliente
@@ -48,12 +39,15 @@ const RegisterCustomerModal = () => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={styleModal}
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Cadastro de Usuário
-          </Typography>
-          <Button onClick={() => handleClose()}>Close</Button>
+        <Box sx={styleBoxModal}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Cadastro de Usuário
+            </Typography>
+            <Button onClick={() => handleClose()}>Close</Button>
+          </Box>
           <TextField onChange={(e) => setName(e.target.value)} label="Nome" variant="outlined" />
           <TextField onChange={(e) => setEmail(e.target.value)} label="Email" variant="outlined" />
           <TextField onChange={(e) => setPhone(e.target.value)} label="Telefone" variant="outlined" />

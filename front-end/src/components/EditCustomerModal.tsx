@@ -3,16 +3,24 @@ import { Box } from "@mui/system";
 import { useContext, useState } from "react";
 import { CrudContext } from "../contexts/providers/CrudProvider";
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+export const styleBoxModal = {
   width: 400,
   bgcolor: 'white',
   boxShadow: 24,
   p: 4,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'stretch',
+  gap: 2
 };
+
+export const styleModal = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
 const EditCustomerModal = () => {
 
@@ -24,9 +32,13 @@ const EditCustomerModal = () => {
   const [address, setAddress] = useState('')
   const [cpf, setCpf] = useState('')
 
-  const register = () => {
+  const register = async () => {
     console.log({ name, email, phone, address, cpf })
     handleClose()
+    if (cpf == '') {
+      setCpf(oneCustomer.cpf)
+    }
+    await console.log({ name, email, phone, address, cpf })
   }
 
   return (
@@ -35,42 +47,44 @@ const EditCustomerModal = () => {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={styleModal}
     >
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Editar Usuário
-        </Typography>
-        <Button onClick={() => handleClose()}>Close</Button>
+      <Box sx={styleBoxModal}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Editar Usuário
+          </Typography>
+          <Button onClick={() => handleClose()}>Close</Button>
+        </Box>
         <TextField
           onChange={(e) => setName(e.target.value)}
           label="Nome"
           variant="outlined"
-          value={name}
+          value={name == '' ? oneCustomer.name : name}
         />
         <TextField
           onChange={(e) => setEmail(e.target.value)}
           label="Email"
           variant="outlined"
-          value={email}
+          value={email == '' ? oneCustomer.email : email}
         />
         <TextField
           onChange={(e) => setPhone(e.target.value)}
           label="Telefone"
           variant="outlined"
-          value={phone}
+          value={phone == '' ? oneCustomer.phone : phone}
         />
         <TextField
           onChange={(e) => setAddress(e.target.value)}
           label="Endereço"
           variant="outlined"
-          value={address}
+          value={address == '' ? oneCustomer.address : address}
         />
         <TextField
           onChange={(e) => setCpf(e.target.value)}
           label="CPF"
           variant="outlined"
-          defaultValue={oneCustomer.cpf}
-          value={cpf}
+          value={cpf == '' ? oneCustomer.cpf : cpf}
         />
         <Button onClick={() => register()}>Salvar</Button>
       </Box>
