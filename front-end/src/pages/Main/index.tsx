@@ -3,6 +3,7 @@ import { apiUsers } from "../../services/api";
 import PaginationComp from "../../components/Pagination";
 import ListUsers from "../../components/ListUsers";
 import Body from "../../components/Body";
+import { Container } from "@mui/material";
 
 const Main = () => {
 
@@ -29,8 +30,15 @@ const Main = () => {
 
   return (
     <Body>
-      <ListUsers dataUsers={dataUsers} loading={loading} />
-      <PaginationComp pagination={pagination} />
+      <Container sx={{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        gap:2
+      }}>
+        <ListUsers dataUsers={dataUsers} loading={loading}/>
+        <PaginationComp pagination={pagination} />
+      </Container>
     </Body>
   )
 }
