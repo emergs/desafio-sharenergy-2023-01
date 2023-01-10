@@ -35,7 +35,14 @@ const RegisterCustomerModal = () => {
 
   return (
     <>
-      <Button onClick={handleOpen}>Novo Cliente</Button>
+      <Box sx={{display:'flex', justifyContent:'flex-end'}}>
+        <Button 
+          sx={{marginTop:'5%', marginBottom:'5%'}} 
+          variant='contained'
+          onClick={handleOpen}>
+          Novo Cliente
+        </Button>
+      </Box>
       <Modal
         open={modalStatus}
         onClose={handleClose}
