@@ -5,7 +5,6 @@ import "dotenv/config"
 
 const verifyTokenMiddleware = async (req: Request, res: Response, next: Function) => {
   let token = req.headers.authorization
-  console.log(token);
 
   if (!token) {
     throw new AppError('Token inválido', 401);

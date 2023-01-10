@@ -6,7 +6,7 @@ interface ICrudProvider {
   getAllCustomers: () => void
   createNewCustomer: (data: ICreateNewCustomer) => void
   deleteCustomer: (cpf: string) => void
-  updateCustomer: (id: string) => void
+  updateCustomer: (id: string, data: any) => void
   listCustomerForId: (id: string) => void
   handleOpen: () => void
   handleClose: () => void
@@ -53,9 +53,15 @@ const CrudProvider = ({ children }: IChildren) => {
     getAllCustomers()
   }
 
-  const updateCustomer = async (id: string) => {
-    apiCrud.defaults.headers.common.authorization = `Bearer ${token}`
-    const req = await apiCrud.patch(`/customer/${id}`)
+  const updateCustomer = async (id: string, data: any) => {
+    try {
+      apiCrud.defaults.headers.common.authorization = `Bearer ${token}`
+      const req = await apiCrud.patch(`/customer/${id}`, data)
+      getAllCustomers()
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   const listCustomerForId = async (id: string) => {

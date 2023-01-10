@@ -24,7 +24,7 @@ export const styleModal = {
 
 const EditCustomerModal = () => {
 
-  const { createNewCustomer, handleClose, modalEdition, oneCustomer } = useContext(CrudContext)
+  const { updateCustomer, handleClose, modalEdition, oneCustomer } = useContext(CrudContext)
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -32,13 +32,10 @@ const EditCustomerModal = () => {
   const [address, setAddress] = useState('')
   const [cpf, setCpf] = useState('')
 
-  const register = async () => {
-    console.log({ name, email, phone, address, cpf })
+  const register = () => {
+    updateCustomer(oneCustomer._id, { name, email, phone, address, cpf })
     handleClose()
-    if (cpf == '') {
-      setCpf(oneCustomer.cpf)
-    }
-    await console.log({ name, email, phone, address, cpf })
+
   }
 
   return (
@@ -84,7 +81,8 @@ const EditCustomerModal = () => {
           onChange={(e) => setCpf(e.target.value)}
           label="CPF"
           variant="outlined"
-          value={cpf == '' ? oneCustomer.cpf : cpf}
+          defaultValue={oneCustomer.cpf}
+          value={cpf == '' ? setCpf(oneCustomer.cpf) : cpf}
         />
         <Button onClick={() => register()}>Salvar</Button>
       </Box>

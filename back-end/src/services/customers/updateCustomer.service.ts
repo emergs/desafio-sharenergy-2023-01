@@ -4,6 +4,7 @@ import Customer from "../../models/customer.models"
 
 
 const updateCustomerService = async (id: string, data: ICustomerUpdate) => {
+
   const customer = await Customer.findByIdAndUpdate(id, {
     name: data.name,
     email: data.email,

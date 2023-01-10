@@ -15,9 +15,9 @@ const Crud = () => {
     getAllCustomers()
   }, [])
 
-  const getDataCustomer = (id: any) => {
+  const getDataCustomer = async (id: any) => {
+    await listCustomerForId(id)
     handleOpen()
-    listCustomerForId(id)
   }
 
   return (
